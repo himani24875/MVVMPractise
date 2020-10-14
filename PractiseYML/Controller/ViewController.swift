@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let cellName = "EmployeeTVC"
-//    var userList: [Employee]?
     var viewModel = EmployeeVM()
     
     override func viewDidLoad() {
@@ -38,6 +37,7 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK:- UITableViewDelegate
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.viewModel.employee?.count ?? 0
