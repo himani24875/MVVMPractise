@@ -8,25 +8,26 @@
 
 import Foundation
 
-protocol EmployeeDelegate: AnyObject {
-    func showLoader()
-    func hideLoader()
-    func updateTable()
+protocol EmployeeVMDelegate: class {
+//    func showLoader()
+//    func hideLoader()
+//    func updateTable()
+    func employeeFetchStarted()
+    func employeeFetchEnded()
+    func employeeFetchFailed()
 }
 
 class EmployeeVM {
-    var employee: [Employee]?
-    var manager = APIManager()
-    weak var delegate: EmployeeDelegate?
+    var employee = [Employee]()
+    weak var delegate: EmployeeVMDelegate?
     
     func getUsersList() {
-        self.delegate?.showLoader()
-        self.manager.getUsers(completionHandler: { [weak self] (response) in
-            self?.delegate?.hideLoader()
-            self?.employee = response?.users
-            self?.delegate?.updateTable()
+        delegate?.employeeFetchStarted()
+        APIManager().getUsers(completionHandler: { [weak self] (response) in
+            self?.employee = response?.users ?? []
+            self?.delegate?.employeeFetchEnded()
         }) { [weak self] (error) in
-            self?.delegate?.hideLoader()
+            self?.delegate?.employeeFetchFailed()
             print(error.debugDescription)
         }
     }

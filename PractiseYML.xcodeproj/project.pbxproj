@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F6235F87253971D7008A5D9F /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6235F86253971D7008A5D9F /* Contants.swift */; };
 		F646D6C82536E4A50076020E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F646D6C72536E4A50076020E /* AppDelegate.swift */; };
 		F646D6CA2536E4A50076020E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F646D6C92536E4A50076020E /* SceneDelegate.swift */; };
 		F646D6CC2536E4A50076020E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F646D6CB2536E4A50076020E /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F6235F86253971D7008A5D9F /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
 		F646D6C42536E4A50076020E /* PractiseYML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PractiseYML.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F646D6C72536E4A50076020E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F646D6C92536E4A50076020E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F6235F85253971B6008A5D9F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				F6235F86253971D7008A5D9F /* Contants.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		F646D6BB2536E4A50076020E = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +76,7 @@
 		F646D6C62536E4A50076020E /* PractiseYML */ = {
 			isa = PBXGroup;
 			children = (
+				F6235F85253971B6008A5D9F /* Utility */,
 				F646D6F125370D710076020E /* Network */,
 				F646D6E52536EB690076020E /* Lifecycle */,
 				F646D6E42536EB260076020E /* View */,
@@ -213,6 +224,7 @@
 				F646D6CC2536E4A50076020E /* ViewController.swift in Sources */,
 				F646D6DD2536E7B90076020E /* Employee.swift in Sources */,
 				F646D6EE2536FE7A0076020E /* EmployeeVM.swift in Sources */,
+				F6235F87253971D7008A5D9F /* Contants.swift in Sources */,
 				F646D6C82536E4A50076020E /* AppDelegate.swift in Sources */,
 				F646D6EA2536F00B0076020E /* EmployeeTVC.swift in Sources */,
 				F646D6CA2536E4A50076020E /* SceneDelegate.swift in Sources */,

@@ -14,60 +14,74 @@ class ViewController: UIViewController {
     
     var indicator = UIActivityIndicatorView(style: .medium)
     
-    let cellName = "EmployeeTVC"
     var viewModel = EmployeeVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initialze()
+        
+        initialze()
     }
     
     private func initialze() {
-        self.registerCell()
-        self.viewModel.delegate = self
-        self.tableView.rowHeight = UITableView.automaticDimension
-        self.tableView.estimatedRowHeight = 600
+        registerCell()
+        viewModel.delegate = self
         
-        self.viewModel.getUsersList()
+        viewModel.getUsersList()
+        setActivityIndicator()
+    }
+    
+    private func setActivityIndicator() {
+        indicator.frame = view.frame
+        indicator.center = view.center
+        view.addSubview(indicator)
     }
     
     private func registerCell() {
-        let nib = UINib(nibName: cellName, bundle: nil)
-        self.tableView.register(nib, forCellReuseIdentifier: cellName)
+        let nib = UINib(nibName: String(describing: EmployeeTVC.self), bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: String(describing: EmployeeTVC.self))
     }
 }
 
 //MARK:- UITableViewDelegate
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.viewModel.employee?.count ?? 0
+        viewModel.employee.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! EmployeeTVC
-        cell.cellData = self.viewModel.employee?[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: EmployeeTVC.self), for: indexPath) as! EmployeeTVC
+        cell.cellData = self.viewModel.employee[indexPath.row]
         return cell
     }
 }
 
-extension ViewController: EmployeeDelegate {
+//MARK:- Loader Functions
+extension ViewController {
     func showLoader() {
-        self.indicator.frame = self.view.frame
-        self.indicator.center = self.view.center
-        self.view.addSubview(indicator)
-        self.indicator.startAnimating()
+        indicator.startAnimating()
     }
     
     func hideLoader() {
-        DispatchQueue.main.async {
-            self.indicator.stopAnimating()
-            self.indicator.removeFromSuperview()
+        DispatchQueue.main.async { [weak self] in
+            self?.indicator.stopAnimating()
+        }
+    }
+}
+
+//MARK:- EmployeeVMDelegate
+extension ViewController: EmployeeVMDelegate {
+    func employeeFetchStarted() {
+        showLoader()
+    }
+    
+    func employeeFetchEnded() {
+        hideLoader()
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
         }
     }
     
-    func updateTable() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+    func employeeFetchFailed() {
+        hideLoader()
     }
 }

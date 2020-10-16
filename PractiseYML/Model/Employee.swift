@@ -18,4 +18,10 @@ struct Employee: Codable {
     let lastName: String
     let phoneNumber: String
     let emailAddress: String
+    let createdAt: Date
+    
+    enum CodingKeys: String, CodingKey {
+        case userId, firstName, lastName, phoneNumber, emailAddress
+        case createdAt = "created_at"
+    }
 }

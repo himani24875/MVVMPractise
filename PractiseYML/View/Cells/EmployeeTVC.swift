@@ -17,7 +17,7 @@ class EmployeeTVC: UITableViewCell {
     
     var cellData: Employee? {
         didSet {
-            self.setData()
+            setData()
         }
     }
     
@@ -28,9 +28,9 @@ class EmployeeTVC: UITableViewCell {
     func setData() {
         guard let data = cellData else { return }
         
-        self.userIdLbl.text = "\(data.userId)"
-        self.userNameLbl.text = "\(data.firstName) \(data.lastName)"
-        self.phoneNoLbl.text = "\(data.phoneNumber)"
-        self.emailLbl.text = "\(data.emailAddress)"
+        userIdLbl.text = "\(data.userId)"
+        userNameLbl.text = "\(data.firstName) \(data.lastName)"
+        phoneNoLbl.text = "\(data.phoneNumber)"
+        emailLbl.text = data.emailAddress
     }
 }
